@@ -1,4 +1,4 @@
-package com.MTP.rek;
+package com.MTP.rekrutacja;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
