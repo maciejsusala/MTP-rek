@@ -64,8 +64,11 @@ public class StarServiceImpl implements StarService {
     }
 
     @Override
-    public List<Star> findAllStars() {
-        return starRepository.findAll();
+    public List<StarDto> findAllStars() {
+        List<Star> stars = starRepository.findAll();
+        return stars.stream()
+                .map(star -> objectMapper.convertValue(star, StarDto.class))
+                .collect(Collectors.toList());
     }
 
     //TODO change to StarDTO

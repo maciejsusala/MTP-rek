@@ -42,20 +42,20 @@ class StarController {
     }
 
     @GetMapping("/closest")
-    public List<Star> findClosestStars(@RequestParam int size) {
-        List<Star> stars = starService.findAllStars();
+    public List<StarDto> findClosestStars(@RequestParam int size) {
+        List<StarDto> stars = starService.findAllStars();
         return starService.findClosestStars(stars, size);
     }
 
     @GetMapping("/number-by-distances")
     public Map<Long, Integer> getNumberOfStarsByDistances() {
-        List<Star> stars = starService.findAllStars();
+        List<StarDto> stars = starService.findAllStars();
         return starService.getNumberOfStarsByDistances(stars);
     }
 
     @GetMapping("/unique")
     public Collection<Star> getUniqueStars() {
-        Collection<Star> stars = starService.findAllStars();
+        Collection<StarDto> stars = starService.findAllStars();
         return starService.getUniqueStars(stars);
     }
 }

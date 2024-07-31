@@ -23,5 +23,5 @@ public interface StarService {
 
     void deleteStar(Long id);
 
-    List<Star> findAllStars();
+    List<StarDto> findAllStars();
 }
