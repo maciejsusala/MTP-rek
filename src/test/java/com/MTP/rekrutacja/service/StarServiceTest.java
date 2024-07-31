@@ -1,7 +1,6 @@
 package com.MTP.rekrutacja.service;
 
 import com.MTP.rekrutacja.dto.StarDto;
-import com.MTP.rekrutacja.model.Star;
 import com.MTP.rekrutacja.repository.StarRepository;
 import com.MTP.rekrutacja.service.impl.StarServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
