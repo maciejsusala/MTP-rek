@@ -14,6 +14,9 @@ import org.springframework.stereotype.Service;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+ * Service implementation for managing stars.
+ */
 @Service
 @Slf4j
 @RequiredArgsConstructor
@@ -22,7 +25,13 @@ public class StarServiceImpl implements StarService {
     private final StarRepository starRepository;
     private final ObjectMapper objectMapper;
 
-
+    /**
+     * Finds a star by its ID.
+     *
+     * @param id the ID of the star
+     * @return the StarDto containing star details
+     * @throws StarNotFoundException if the star is not found
+     */
     @Override
     public StarDto findById(Long id) {
         Star starEntity = starRepository.findById(id)
@@ -31,6 +40,12 @@ public class StarServiceImpl implements StarService {
         return objectMapper.convertValue(starEntity, StarDto.class);
     }
 
+    /**
+     * Adds a new star.
+     *
+     * @param starDto the StarDto containing star details
+     * @return the StarDto containing star details
+     */
     @Override
     @Transactional
     public StarDto addStar(StarDto starDto) {
@@ -40,6 +55,14 @@ public class StarServiceImpl implements StarService {
         return objectMapper.convertValue(savedStar, StarDto.class);
     }
 
+    /**
+     * Updates an existing star.
+     *
+     * @param id the ID of the star to update
+     * @param starDto the StarDto containing updated star details
+     * @return the updated StarDto
+     * @throws StarNotFoundException if the star is not found
+     */
     @Override
     @Transactional
     public StarDto updateStar(Long id, StarDto starDto) {
@@ -54,6 +77,12 @@ public class StarServiceImpl implements StarService {
         return objectMapper.convertValue(updatedStar, StarDto.class);
     }
 
+    /**
+     * Deletes a star by its ID.
+     *
+     * @param id the ID of the star to delete
+     * @throws StarNotFoundException if the star is not found
+     */
     @Override
     @Transactional
     public void deleteStar(Long id) {
@@ -63,14 +92,13 @@ public class StarServiceImpl implements StarService {
         starRepository.delete(star);
     }
 
-    @Override
-    public List<StarDto> findAllStars() {
-        List<Star> stars = starRepository.findAll();
-        return stars.stream()
-                .map(star -> objectMapper.convertValue(star, StarDto.class))
-                .collect(Collectors.toList());
-    }
-
+    /**
+     * Finds the closest stars.
+     *
+     * @param stars the list of StarDto objects
+     * @param size the number of closest stars to return
+     * @return the list of closest StarDto objects
+     */
     @Override
     public List<StarDto> findClosestStars(List<StarDto> stars, int size) {
         return stars.stream()
@@ -79,9 +107,14 @@ public class StarServiceImpl implements StarService {
                 .collect(Collectors.toList());
     }
 
-    //TODO change to StarDTO
+    /**
+     * Gets the number of stars by distances.
+     *
+     * @param stars the list of StarDto objects
+     * @return a map of distances to the number of stars
+     */
     @Override
-    public Map<Long,Integer> getNumberOfStarsByDistances(List<StarDto> stars) {
+    public Map<Long, Integer> getNumberOfStarsByDistances(List<StarDto> stars) {
         return stars.stream()
                 .collect(Collectors.groupingBy(
                         StarDto::getDistance,
@@ -90,11 +123,30 @@ public class StarServiceImpl implements StarService {
                 ));
     }
 
-    //TODO change to StarDTO
+    /**
+     * Gets unique stars.
+     *
+     * @param stars the collection of StarDto objects
+     * @return a collection of unique StarDto objects
+     */
     @Override
     public Collection<StarDto> getUniqueStars(Collection<StarDto> stars) {
         return stars.stream()
                 .collect(Collectors.toMap(StarDto::getName, star -> star, (star1, star2) -> star1))
                 .values();
+    }
+
+    /**
+     * Finds all stars.
+     * This is a helper method for other methods.
+     *
+     * @return the list of all StarDto objects
+     */
+    @Override
+    public List<StarDto> findAllStars() {
+        List<Star> stars = starRepository.findAll();
+        return stars.stream()
+                .map(star -> objectMapper.convertValue(star, StarDto.class))
+                .collect(Collectors.toList());
     }
 }

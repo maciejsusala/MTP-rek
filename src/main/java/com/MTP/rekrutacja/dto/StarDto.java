@@ -7,6 +7,9 @@ import lombok.Getter;
 
 import java.io.Serializable;
 
+/**
+ * Data transfer object for star entities.
+ */
 @Builder
 public record StarDto(
         Long id,

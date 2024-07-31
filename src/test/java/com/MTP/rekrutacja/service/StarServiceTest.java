@@ -13,6 +13,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.*;
 
+/**
+ * Test class for StarServiceImpl.
+ */
 class StarServiceImplTest {
 
     @Mock
@@ -21,11 +24,18 @@ class StarServiceImplTest {
     @InjectMocks
     private StarServiceImpl starServiceImpl;
 
+    /**
+     * Sets up the test environment.
+     */
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
     }
 
+    /**
+     * Tests the findClosestStars method.
+     * Verifies that the method returns the correct number of closest stars.
+     */
     @Test
     void findClosestStarsTest() {
         List<StarDto> stars = Arrays.asList(
@@ -50,6 +60,10 @@ class StarServiceImplTest {
         }
     }
 
+    /**
+     * Tests the getNumberOfStarsByDistances method.
+     * Verifies that the method returns the correct count of stars by distances.
+     */
     @Test
     void getNumberOfStarsByDistancesTest() {
         List<StarDto> stars = Arrays.asList(
@@ -71,6 +85,10 @@ class StarServiceImplTest {
         );
     }
 
+    /**
+     * Tests the getUniqueStars method.
+     * Verifies that the method returns the correct collection of unique stars.
+     */
     @Test
     void getUniqueStarsTest() {
         List<StarDto> stars = Arrays.asList(
@@ -87,6 +105,13 @@ class StarServiceImplTest {
         assertEquals(expectedUniqueStars.size(), uniqueStars.size());
     }
 
+    /**
+     * Creates a StarDto object.
+     *
+     * @param name the name of the star
+     * @param distance the distance of the star
+     * @return the created StarDto object
+     */
     private StarDto createStarDto(String name, long distance) {
         return StarDto.builder()
                 .name(name)

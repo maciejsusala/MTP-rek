@@ -11,9 +11,18 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Global exception handler for the application.
+ */
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
+    /**
+     * Handles validation exceptions.
+     *
+     * @param ex the MethodArgumentNotValidException
+     * @return the ErrorResponseDto containing validation error details
+     */
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ErrorResponseDto handleValidationExceptions(MethodArgumentNotValidException ex) {
@@ -31,7 +40,12 @@ public class GlobalExceptionHandler {
         );
     }
 
-
+    /**
+     * Handles StarNotFoundException.
+     *
+     * @param ex the StarNotFoundException
+     * @return the ErrorResponseDto containing error details
+     */
     @ExceptionHandler(StarNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public ErrorResponseDto handleStarNotFoundException(StarNotFoundException ex) {

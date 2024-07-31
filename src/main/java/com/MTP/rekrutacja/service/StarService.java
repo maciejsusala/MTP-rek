@@ -1,19 +1,16 @@
 package com.MTP.rekrutacja.service;
 
 import com.MTP.rekrutacja.dto.StarDto;
-import com.MTP.rekrutacja.model.Star;
 
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
-
+/**
+ * Service interface for managing stars.
+ */
 public interface StarService {
-    List<StarDto> findClosestStars(List<StarDto> stars, int size);
 
-    Map<Long, Integer> getNumberOfStarsByDistances(List<StarDto> stars);
-
-    Collection<StarDto> getUniqueStars(Collection<StarDto> stars);
 
     StarDto findById(Long id);
 
@@ -22,6 +19,12 @@ public interface StarService {
     StarDto updateStar(Long id, StarDto starDto);
 
     void deleteStar(Long id);
+
+    List<StarDto> findClosestStars(List<StarDto> stars, int size);
+
+    Map<Long, Integer> getNumberOfStarsByDistances(List<StarDto> stars);
+
+    Collection<StarDto> getUniqueStars(Collection<StarDto> stars);
 
     List<StarDto> findAllStars();
 }
