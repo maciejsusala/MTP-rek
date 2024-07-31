@@ -54,7 +54,7 @@ class StarController {
     }
 
     @GetMapping("/unique")
-    public Collection<Star> getUniqueStars() {
+    public Collection<StarDto> getUniqueStars() {
         Collection<StarDto> stars = starService.findAllStars();
         return starService.getUniqueStars(stars);
     }

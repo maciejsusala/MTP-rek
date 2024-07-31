@@ -13,7 +13,7 @@ public interface StarService {
 
     Map<Long, Integer> getNumberOfStarsByDistances(List<StarDto> stars);
 
-    Collection<Star> getUniqueStars(Collection<Star> stars);
+    Collection<StarDto> getUniqueStars(Collection<StarDto> stars);
 
     StarDto findById(Long id);
 

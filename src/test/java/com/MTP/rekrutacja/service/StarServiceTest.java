@@ -84,7 +84,7 @@ class StarServiceImplTest {
 
         Set<StarDto> expectedUniqueStars = new HashSet<>(stars);
 
-        Collection<Star> uniqueStars = starServiceImpl.getUniqueStars(stars);
+        Collection<StarDto> uniqueStars = starServiceImpl.getUniqueStars(stars);
         assertEquals(expectedUniqueStars.size(), uniqueStars.size());
     }
 

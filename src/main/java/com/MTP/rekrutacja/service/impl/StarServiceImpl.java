@@ -92,9 +92,9 @@ public class StarServiceImpl implements StarService {
 
     //TODO change to StarDTO
     @Override
-    public Collection<Star> getUniqueStars(Collection<Star> stars) {
+    public Collection<StarDto> getUniqueStars(Collection<StarDto> stars) {
         return stars.stream()
-                .collect(Collectors.toMap(Star::getName, star -> star, (star1, star2) -> star1))
+                .collect(Collectors.toMap(StarDto::getName, star -> star, (star1, star2) -> star1))
                 .values();
     }
 }
