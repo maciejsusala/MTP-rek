@@ -71,6 +71,7 @@ public class StarServiceImpl implements StarService {
                 .limit(size)
                 .collect(Collectors.toList());
     }
+    //TODO use TreeMap
     //TODO change to StarDTO
     @Override
     public Map<Long, Integer> getNumberOfStarsByDistances(List<Star> stars) {

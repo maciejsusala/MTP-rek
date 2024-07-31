@@ -35,4 +35,6 @@ class StarController {
     public void deleteStar(@PathVariable Long id) {
         starService.deleteStar(id);
     }
+
+    //TODO add endpoints for 3 services
 }
