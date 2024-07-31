@@ -22,4 +22,6 @@ public interface StarService {
     StarDto updateStar(Long id, StarDto starDto);
 
     void deleteStar(Long id);
+
+    List<Star> findAllStars();
 }

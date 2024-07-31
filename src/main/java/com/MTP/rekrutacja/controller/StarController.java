@@ -1,11 +1,14 @@
 package com.MTP.rekrutacja.controller;
 
 import com.MTP.rekrutacja.dto.StarDto;
+import com.MTP.rekrutacja.model.Star;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import com.MTP.rekrutacja.service.StarService;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/stars")
@@ -37,4 +40,13 @@ class StarController {
     }
 
     //TODO add endpoints for 3 services
+    @GetMapping("/closest")
+    public List<Star> findClosestStars(@RequestParam int size) {
+        List<Star> stars = starService.findAllStars();
+        return starService.findClosestStars(stars, size);
+    }
+
+
+    //Map<Long, Integer> getNumberOfStarsByDistances(List<Star> stars);
+    //Collection<Star> getUniqueStars(Collection<Star> stars);
 }

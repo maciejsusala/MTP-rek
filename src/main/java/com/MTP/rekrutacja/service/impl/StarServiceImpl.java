@@ -63,6 +63,11 @@ public class StarServiceImpl implements StarService {
         starRepository.delete(star);
     }
 
+    @Override
+    public List<Star> findAllStars() {
+        return starRepository.findAll();
+    }
+
     //TODO change to StarDTO
     @Override
     public List<Star> findClosestStars(List<Star> stars, int size) {
