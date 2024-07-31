@@ -71,7 +71,6 @@ public class StarServiceImpl implements StarService {
                 .collect(Collectors.toList());
     }
 
-    //TODO change to StarDTO
     @Override
     public List<StarDto> findClosestStars(List<StarDto> stars, int size) {
         return stars.stream()
@@ -82,10 +81,10 @@ public class StarServiceImpl implements StarService {
 
     //TODO change to StarDTO
     @Override
-    public Map<Long,Integer> getNumberOfStarsByDistances(List<Star> stars) {
+    public Map<Long,Integer> getNumberOfStarsByDistances(List<StarDto> stars) {
         return stars.stream()
                 .collect(Collectors.groupingBy(
-                        Star::getDistance,
+                        StarDto::getDistance,
                         TreeMap::new,
                         Collectors.summingInt(star -> 1)
                 ));

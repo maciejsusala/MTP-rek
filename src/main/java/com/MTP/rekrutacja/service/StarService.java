@@ -11,7 +11,7 @@ import java.util.Map;
 public interface StarService {
     List<StarDto> findClosestStars(List<StarDto> stars, int size);
 
-    Map<Long, Integer> getNumberOfStarsByDistances(List<Star> stars);
+    Map<Long, Integer> getNumberOfStarsByDistances(List<StarDto> stars);
 
     Collection<Star> getUniqueStars(Collection<Star> stars);
 
