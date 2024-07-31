@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import com.MTP.rekrutacja.service.StarService;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/stars")
@@ -44,6 +45,12 @@ class StarController {
     public List<Star> findClosestStars(@RequestParam int size) {
         List<Star> stars = starService.findAllStars();
         return starService.findClosestStars(stars, size);
+    }
+
+    @GetMapping("/number-by-distances")
+    public Map<Long, Integer> getNumberOfStarsByDistances() {
+        List<Star> stars = starService.findAllStars();
+        return starService.getNumberOfStarsByDistances(stars);
     }
 
 
