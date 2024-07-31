@@ -9,7 +9,7 @@ import java.util.Map;
 
 
 public interface StarService {
-    List<Star> findClosestStars(List<Star> stars, int size);
+    List<StarDto> findClosestStars(List<StarDto> stars, int size);
 
     Map<Long, Integer> getNumberOfStarsByDistances(List<Star> stars);
 

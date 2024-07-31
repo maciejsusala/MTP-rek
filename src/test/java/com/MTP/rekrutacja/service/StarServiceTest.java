@@ -1,5 +1,6 @@
 package com.MTP.rekrutacja.service;
 
+import com.MTP.rekrutacja.dto.StarDto;
 import com.MTP.rekrutacja.model.Star;
 import com.MTP.rekrutacja.repository.StarRepository;
 import com.MTP.rekrutacja.service.impl.StarServiceImpl;
@@ -28,21 +29,21 @@ class StarServiceImplTest {
 
     @Test
     void findClosestStarsTest() {
-        List<Star> stars = Arrays.asList(
-                createStar("Alpha", 100),
-                createStar("Beta", 50),
-                createStar("Gamma", 20),
-                createStar("Delta", 10),
-                createStar("Epsilon", 5)
+        List<StarDto> stars = Arrays.asList(
+                createStarDto("Alpha", 100),
+                createStarDto("Beta", 50),
+                createStarDto("Gamma", 20),
+                createStarDto("Delta", 10),
+                createStarDto("Epsilon", 5)
         );
 
-        List<Star> expectedClosestStars = Arrays.asList(
-                createStar("Epsilon", 5),
-                createStar("Delta", 10),
-                createStar("Gamma", 20)
+        List<StarDto> expectedClosestStars = Arrays.asList(
+                createStarDto("Epsilon", 5),
+                createStarDto("Delta", 10),
+                createStarDto("Gamma", 20)
         );
 
-        List<Star> closestStars = starServiceImpl.findClosestStars(stars, 3);
+        List<StarDto> closestStars = starServiceImpl.findClosestStars(stars, 3);
         assertEquals(expectedClosestStars.size(), closestStars.size());
         for (int i = 0; i < expectedClosestStars.size(); i++) {
             assertEquals(expectedClosestStars.get(i).getName(), closestStars.get(i).getName());
@@ -52,12 +53,12 @@ class StarServiceImplTest {
 
     @Test
     void getNumberOfStarsByDistancesTest() {
-        List<Star> stars = Arrays.asList(
-                createStar("Alpha", 100),
-                createStar("Beta", 100),
-                createStar("Gamma", 50),
-                createStar("Delta", 50),
-                createStar("Epsilon", 50)
+        List<StarDto> stars = Arrays.asList(
+                createStarDto("Alpha", 100),
+                createStarDto("Beta", 100),
+                createStarDto("Gamma", 50),
+                createStarDto("Delta", 50),
+                createStarDto("Epsilon", 50)
         );
 
         Map<Long, Integer> expectedCount = new HashMap<>();
@@ -73,22 +74,22 @@ class StarServiceImplTest {
 
     @Test
     void getUniqueStarsTest() {
-        List<Star> stars = Arrays.asList(
-                createStar("Alpha", 100),
-                createStar("Alpha", 100),
-                createStar("Beta", 50),
-                createStar("Gamma", 50),
-                createStar("Gamma", 50)
+        List<StarDto> stars = Arrays.asList(
+                createStarDto("Alpha", 100),
+                createStarDto("Alpha", 100),
+                createStarDto("Beta", 50),
+                createStarDto("Gamma", 50),
+                createStarDto("Gamma", 50)
         );
 
-        Set<Star> expectedUniqueStars = new HashSet<>(stars);
+        Set<StarDto> expectedUniqueStars = new HashSet<>(stars);
 
         Collection<Star> uniqueStars = starServiceImpl.getUniqueStars(stars);
         assertEquals(expectedUniqueStars.size(), uniqueStars.size());
     }
 
-    private Star createStar(String name, long distance) {
-        return Star.builder()
+    private StarDto createStarDto(String name, long distance) {
+        return StarDto.builder()
                 .name(name)
                 .distance(distance)
                 .build();

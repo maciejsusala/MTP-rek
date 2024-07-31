@@ -73,9 +73,9 @@ public class StarServiceImpl implements StarService {
 
     //TODO change to StarDTO
     @Override
-    public List<Star> findClosestStars(List<Star> stars, int size) {
+    public List<StarDto> findClosestStars(List<StarDto> stars, int size) {
         return stars.stream()
-                .sorted(Comparator.comparingLong(Star::getDistance))
+                .sorted(Comparator.comparingLong(StarDto::getDistance))
                 .limit(size)
                 .collect(Collectors.toList());
     }
